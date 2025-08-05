@@ -1,0 +1,113 @@
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo">
+            <img src="images/Ramiz_Logo.png" alt="RAMIZ Logo" class="footer-logo-image">
+          </div>
+          <p class="footer-description">
+            Votre partenaire d'excellence pour transformer vos ambitions en succès durables.
+          </p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Services</h3>
+          <ul class="footer-links">
+            <li><a href="#etude">Étude & Expertise</a></li>
+            <li><a href="#immobilier">Immobilier & BTP</a></li>
+            <li><a href="#entretiens">Entretiens</a></li>
+            <li><a href="#apropos">À propos</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <div class="footer-contact">
+            <div class="contact-item">
+              <div class="contact-icon-small">
+                <i class="fas fa-phone"></i>
+              </div>
+              <span>+225 27 22 26 43 05</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-small">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <span>contact@ramiz-ci.com</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-small">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <span>Abidjan, Côte d'Ivoire</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Suivez-nous</h3>
+          <div class="social-buttons">
+            <button class="btn btn-social">
+              <i class="fab fa-facebook-f"></i>
+              Facebook
+            </button>
+            <button class="btn btn-social">
+              <i class="fab fa-linkedin-in"></i>
+              LinkedIn
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 RAMIZ. Tous droits réservés. Conçu avec excellence.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling pour les liens d'ancrage
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Animation des cartes au scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.service-card, .news-card').forEach(card => {
+      observer.observe(card);
+    });
+
+    // Header sticky effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.header');
+      if (window.scrollY > 100) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    });
+  </script>
+</body>
+</html> 
