@@ -4,7 +4,7 @@
       <div class="footer-content">
         <div class="footer-section">
           <div class="footer-logo">
-            <img src="images/Ramiz_Logo.png" alt="RAMIZ Logo" class="footer-logo-image">
+            <img src="images/Ramiz_Logo_White.png" alt="RAMIZ Logo" class="footer-logo-image">
           </div>
           <p class="footer-description">
             Votre partenaire d'excellence pour transformer vos ambitions en succès durables.
@@ -95,8 +95,8 @@
       });
     }, observerOptions);
 
-    document.querySelectorAll('.service-card, .news-card').forEach(card => {
-      observer.observe(card);
+    document.querySelectorAll('.service-card, .news-card, .stat-item').forEach(element => {
+      observer.observe(element);
     });
 
     // Header sticky effect
@@ -108,6 +108,14 @@
         header.classList.remove('header-scrolled');
       }
     });
+    
+    // Validation du formulaire
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Ajoutez ici votre logique de validation et d'envoi du formulaire
+      alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
+      this.reset();
+    });
   </script>
 </body>
-</html> 
+</html>

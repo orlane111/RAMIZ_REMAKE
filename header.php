@@ -10,7 +10,126 @@
   <title>RAMIZ - Votre partenaire de confiance</title>
   <link href="style.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Styles améliorés pour les sous-menus */
+    .dropdown {
+      position: relative;
+    }
+    
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      border-radius: 8px;
+      z-index: 1000;
+      padding: 20px 10px;
+      min-width: 680px;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    
+    .dropdown:hover .dropdown-menu {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .dropdown-menu-column {
+      padding: 0 20px;
+      min-width: 160px;
+      border-right: 1px solid #f0f0f0;
+    }
+    
+    .dropdown-menu-column:last-child {
+      border-right: none;
+    }
+    
+    .dropdown-section {
+      display: block;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 15px;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 8px;
+    }
+    
+    .dropdown-section:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background-color: #66cc00;
+    }
+    
+    .dropdown-menu-column a {
+      display: block;
+      padding: 8px 0;
+      color: #666;
+      font-size: 0.95em;
+      text-decoration: none;
+      transition: all 0.2s;
+      position: relative;
+      padding-left: 0;
+    }
+    
+    .dropdown-menu-column a:hover {
+      color: #66cc00;
+      padding-left: 5px;
+      background: rgba(102, 204, 0, 0.18);
+      border-radius: 4px;
+    }
+    
+    .dropdown-menu-column a:before {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 50%;
+      width: 0;
+      height: 1px;
+      background-color: #27ae60;
+      transition: all 0.2s;
+      opacity: 0;
+    }
+    
+    .dropdown-menu-column a:hover:before {
+      width: 5px;
+      opacity: 1;
+    }
+    
+    /* Pour les sous-menus avec moins de colonnes */
+    .dropdown-menu.single-column {
+      min-width: 250px;
+    }
+    
+    /* Ajustements pour différentes tailles d'écran */
+    @media (max-width: 992px) {
+      .dropdown-menu {
+        min-width: 90vw;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        flex-wrap: wrap;
+      }
+      
+      .dropdown:hover .dropdown-menu {
+        transform: translateX(-50%) translateY(0);
+      }
+      
+      .dropdown-menu-column {
+        min-width: 45%;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
@@ -26,13 +145,13 @@
             <?php if (isset($item['submenu'])): ?>
               <div class="dropdown">
                 <a href="<?= $item['link'] ?>" class="nav-link"><?= $item['label'] ?> <i class="fa-solid fa-chevron-down"></i></a>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu <?= count($item['submenu']) <= 1 ? 'single-column' : '' ?>">
                   <?php foreach ($item['submenu'] as $column): ?>
                     <div class="dropdown-menu-column">
                       <?php foreach ($column as $sub): ?>
                         <?php if (isset($sub['section'])): ?>
-                          <span class="dropdown-section"> <?= $sub['section'] ?> </span>
-                        <?php else: ?>
+                          <span class="dropdown-section"><?= $sub['section'] ?></span>
+                        <?php elseif (!empty($sub['label'])): ?>
                           <a href="<?= $sub['link'] ?>"><?= $sub['label'] ?></a>
                         <?php endif; ?>
                       <?php endforeach; ?>
@@ -47,4 +166,4 @@
         </nav>
       </div>
     </div>
-  </header> 
+  </header>
