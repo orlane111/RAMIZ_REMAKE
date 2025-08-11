@@ -4,7 +4,11 @@
       <div class="footer-content">
         <div class="footer-section">
           <div class="footer-logo">
-            <img src="images/Ramiz_Logo_White.png" alt="RAMIZ Logo" class="footer-logo-image">
+            <?php
+            // Chemin de l'image du logo
+            $img_path = $is_in_services ? '../../images/Ramiz_Logo.png' : '../images/Ramiz_Logo.png';
+          ?>
+          <img src="<?= $img_path ?>" alt="RAMIZ Logo" class="logo-image">
           </div>
           <p class="footer-description">
             Votre partenaire d'excellence pour transformer vos ambitions en succès durables.
@@ -14,9 +18,9 @@
         <div class="footer-section">
           <h3>Services</h3>
           <ul class="footer-links">
-            <li><a href="#etude">Étude & Expertise</a></li>
-            <li><a href="#immobilier">Immobilier & BTP</a></li>
-            <li><a href="#entretiens">Entretiens</a></li>
+            <li><a href="Etudes_&_Expertise.php">Étude & Expertise</a></li>
+            <li><a href="Immobilier_&_BTP.php">Immobilier & BTP</a></li>
+            <li><a href="Entretien.php">Entretiens</a></li>
             <li><a href="#apropos">À propos</a></li>
           </ul>
         </div>
@@ -40,7 +44,7 @@
               <div class="contact-icon-small">
                 <i class="fas fa-map-marker-alt"></i>
               </div>
-              <span>Abidjan, Côte d'Ivoire</span>
+              <span>Akouédo-Ancien, 37 abidjan, Côte d'Ivoire</span>
             </div>
           </div>
         </div>
@@ -48,14 +52,18 @@
         <div class="footer-section">
           <h3>Suivez-nous</h3>
           <div class="social-buttons">
-            <button class="btn btn-social">
-              <i class="fab fa-facebook-f"></i>
-              Facebook
-            </button>
-            <button class="btn btn-social">
-              <i class="fab fa-linkedin-in"></i>
-              LinkedIn
-            </button>
+            <a href="https://www.facebook.com/ramizci" target="_blank">
+              <button class="btn btn-social">
+                <i class="fab fa-facebook-f"></i>
+                Facebook
+              </button>
+            </a>
+            <a href="https://www.linkedin.com/company/ramizci/" target="_blank">
+              <button class="btn btn-social">
+                <i class="fab fa-linkedin-in"></i>
+                LinkedIn
+              </button>
+            </a>
           </div>
         </div>
       </div>
@@ -110,7 +118,7 @@
     });
     
     // Validation du formulaire
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    document.getElementById('contactForm')?.addEventListener('submit', function(e) {
       e.preventDefault();
       // Ajoutez ici votre logique de validation et d'envoi du formulaire
       alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');

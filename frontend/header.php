@@ -8,12 +8,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RAMIZ - Votre partenaire de confiance</title>
-  <link href="style.css" rel="stylesheet">
+  <!-- CSS avec chemins directs -->
+<?php if ($is_in_services): ?>
+  <!-- Nous sommes dans All_services/ -->
+  <link href="../../css/style.css" rel="stylesheet">
+  <link href="../../css/animations.css" rel="stylesheet">
+  <link href="../../css/responsive.css" rel="stylesheet">
+  <link href="../../css/services.css" rel="stylesheet">
+  <link href="../../css/variables.css" rel="stylesheet">
+<?php else: ?>
+  <!-- Nous sommes dans le répertoire racine -->
+  <link href="../css/style.css" rel="stylesheet">
+  <link href="../css/animations.css" rel="stylesheet">
+  <link href="../css/responsive.css" rel="stylesheet">
+  <link href="../css/services.css" rel="stylesheet">
+  <link href="../css/variables.css" rel="stylesheet">
+<?php endif; ?>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
     /* Styles améliorés pour les sous-menus */
+    .icon-primary {
+      color: #53c600;
+    }
+    .icon-secondary {
+      color: #234d20;
+    }
+    .icon-accent {
+      color: #ffd600;
+    }
+    .icon-success {
+      color: #27ae60;
+    }
     .dropdown {
       position: relative;
     }
@@ -137,14 +165,23 @@
     <div class="container">
       <div class="header-content">
         <div class="logo">
-          <img src="images/Ramiz_Logo.png" alt="RAMIZ Logo" class="logo-image">
+          <?php
+            // Chemin de l'image du logo
+            $img_path = $is_in_services ? '../../images/Ramiz_Logo.png' : '../images/Ramiz_Logo.png';
+          ?>
+          <img src="<?= $img_path ?>" alt="RAMIZ Logo" class="logo-image">
         </div>
 
         <nav class="nav">
           <?php foreach ($menu as $item): ?>
             <?php if (isset($item['submenu'])): ?>
               <div class="dropdown">
-                <a href="<?= $item['link'] ?>" class="nav-link"><?= $item['label'] ?> <i class="fa-solid fa-chevron-down"></i></a>
+                <a href="<?= $item['link'] ?>" class="nav-link">
+                  <?php if (!empty($item['icon'])): ?>
+                    <i class="fas <?= $item['icon'] ?> icon-primary"></i>
+                  <?php endif; ?>
+                  <?= $item['label'] ?> <i class="fa-solid fa-chevron-down"></i>
+                </a>
                 <div class="dropdown-menu <?= count($item['submenu']) <= 1 ? 'single-column' : '' ?>">
                   <?php foreach ($item['submenu'] as $column): ?>
                     <div class="dropdown-menu-column">
@@ -152,7 +189,12 @@
                         <?php if (isset($sub['section'])): ?>
                           <span class="dropdown-section"><?= $sub['section'] ?></span>
                         <?php elseif (!empty($sub['label'])): ?>
-                          <a href="<?= $sub['link'] ?>"><?= $sub['label'] ?></a>
+                          <a href="<?= $sub['link'] ?>">
+                            <?php if (!empty($sub['icon'])): ?>
+                              <i class="fas <?= $sub['icon'] ?> icon-secondary"></i>
+                            <?php endif; ?>
+                            <?= $sub['label'] ?>
+                          </a>
                         <?php endif; ?>
                       <?php endforeach; ?>
                     </div>
@@ -160,7 +202,12 @@
                 </div>
               </div>
             <?php else: ?>
-              <a href="<?= $item['link'] ?>" class="nav-link"><?= $item['label'] ?></a>
+              <a href="<?= $item['link'] ?>" class="nav-link">
+                <?php if (!empty($item['icon'])): ?>
+                  <i class="fas <?= $item['icon'] ?> icon-primary"></i>
+                <?php endif; ?>
+                <?= $item['label'] ?>
+              </a>
             <?php endif; ?>
           <?php endforeach; ?>
         </nav>

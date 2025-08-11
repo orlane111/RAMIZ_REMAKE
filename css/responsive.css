@@ -1,0 +1,51 @@
+/**
+ * Media Queries additionnelles
+ */
+
+/* Tablettes et petits écrans */
+@media (max-width: 1200px) {
+  .services-container {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* Tablettes */
+@media (max-width: 1024px) {
+  .services-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+}
+
+/* Mobiles larges */
+@media (max-width: 768px) {
+  .services-container,
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .service-card {
+    min-width: 90vw;
+    max-width: 99vw;
+  }
+}
+
+/* Petits mobiles */
+@media (max-width: 480px) {
+  .service-card {
+    min-width: 98vw;
+    max-width: 100vw;
+    padding: 0;
+  }
+
+  .card-body,
+  .service-card-body {
+    padding: 12px 6px;
+  }
+
+  .card-footer,
+  .service-card-footer {
+    padding: 0 6px 12px;
+  }
+}

@@ -1,0 +1,653 @@
+/* ==============================================================
+   RAMIZ - CSS PRINCIPAL AMÉLIORÉ (PALETTE RENFORCÉE)
+   Design d'impact avec double palette + cartes de visite
+   Auteur : melissaAnge
+   Date : 2025-08-11 (Mise à jour)
+============================================================== */
+
+/* ------------------------------
+   1. PALETTE DE COULEURS INTÉGRÉE & RENFORCÉE
+------------------------------- */
+/*
+Palette finale enrichie :
+- Lime vibrant: #7ee000 (logo RAMIZ)
+- Vert professionnel: #86f67d (palette2)
+- Vert clair: #77d96c (palette2)
+- Bleu marine: #354c5e (palette2 - fond carte)
+- Bleu profond: #274550 (palette2)
+- Ultra clair: #f7fffa (palette2 - fond)
+- Bleu poudre: #abbdc7 (palette1)
+- Nuit: #0c0c0e (palette1)
+- Vert forêt: #408b2e (palette1)
+- Champ terne: #6a5914 (palette1)
+- Gris Davy: #545662 (palette1)
+- Jaune accent: #ffd600 (palette1)
+*/
+:root {
+  /* Palette principale - logo et cartes de visite */
+  --lime-vibrant: #7ee000;          /* Logo officiel RAMIZ */
+  --navy-blue: #354c5e;             /* Fond cartes de visite (bleu marine) */
+  --deep-blue: #274550;             /* Bleu profond des cartes */
+  --light-green: #86f67d;           /* Vert clair vibrant */
+  --medium-green: #77d96c;          /* Vert moyen professionnel */
+  --ultra-light: #f7fffa;           /* Fond ultra-clair */
+  
+  /* Palette secondaire - étendue */
+  --poudre-blue: #abbdc7;           /* Bleu poudre */
+  --nuit: #0c0c0e;                  /* Nuit */
+  --vert-foret: #408b2e;            /* Vert forêt */
+  --champ-terne: #6a5914;           /* Champ terne (ocre/terre) */
+  --gris-davy: #545662;             /* Gris de Davy */
+  --accent: #ffd600;                /* Jaune accent */
+  --white: #fff;                    /* Blanc */
+  --black: #222;                    /* Noir */
+
+  /* Application de la palette pour UI forte et professionnelle */
+  --primary: var(--lime-vibrant);        /* Principal: vert vibrant du logo */
+  --primary-dark: var(--navy-blue);      /* Fond sombre: bleu marine */
+  --primary-light: var(--light-green);   /* Vert clair pour accents */
+  --primary-ultra-light: var(--ultra-light); /* Fond très clair */
+  --secondary: var(--medium-green);      /* Vert moyen pour CTAs secondaires */
+  --neutral-dark: var(--deep-blue);      /* Texte foncé: bleu profond */
+  --neutral: #7b8085;                    /* Texte secondaire */
+  --neutral-light: #f5f8f5;              /* Fond général */
+  --menu-bg: var(--navy-blue);           /* Fond menu mobile */
+  --accent-color: var(--accent);         /* Accent jaune */
+
+  /* Ombres et radius */
+  --shadow-sm: 0 2px 10px rgba(39, 69, 80, 0.08);
+  --shadow: 0 8px 30px rgba(39, 69, 80, 0.12);
+  --shadow-lg: 0 20px 80px rgba(39, 69, 80, 0.15), 0 10px 30px rgba(39, 69, 80, 0.12);
+  --shadow-green: 0 5px 25px rgba(126, 224, 0, 0.18);
+  --radius-sm: 4px;
+  --radius: 12px;
+  --radius-lg: 22px;
+  
+  /* Couleurs d'états et feedback */
+  --hover-color: var(--light-green);
+  --active-color: var(--vert-foret);
+  --focus-color: var(--accent-color);
+}
+
+/* ------------------------------
+   2. Typographie percutante et identité forte
+------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Poppins:wght@400;600;700;900&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--neutral-dark);
+  background: var(--primary-ultra-light);
+  transition: background .3s;
+}
+
+/* Titres: forts et impactants */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', 'Inter', sans-serif;
+  color: var(--navy-blue);
+  font-weight: 900;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.01em;
+}
+h1 { 
+  font-size: 3rem; 
+  color: var(--primary); 
+  text-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+h2 { 
+  font-size: 2.2rem; 
+  position: relative; 
+  color: var(--primary-dark);
+}
+h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--light-green));
+  margin-top: 10px;
+  border-radius: 4px;
+}
+h3 { font-size: 1.5rem; color: var(--deep-blue); }
+p { color: var(--neutral); margin-bottom: 1.2rem; }
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: all .2s;
+  font-weight: 600;
+}
+a:hover {
+  color: var(--navy-blue);
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--lime-vibrant);
+  color: var(--white);
+}
+
+/* ------------------------------
+   3. HEADER & MENU NAVIGATION - STYLE CARTE DE VISITE
+------------------------------- */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: var(--navy-blue);
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  transition: all .3s;
+}
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.logo-image {
+  height: 48px; width: auto; transition: height .3s;
+  filter: drop-shadow(0 2px 10px rgba(126, 224, 0, 0.2));
+}
+.header-scrolled .logo-image { height: 38px; }
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.nav-link {
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 10px 0;
+  position: relative;
+  display: flex; align-items: center; gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all .25s;
+}
+.nav-link.active,
+.nav-link:focus-visible {
+  color: var(--light-green);
+  outline: 2px solid var(--accent-color);
+}
+.nav-link .fa-solid, .nav-link .fas {
+  color: var(--lime-vibrant);
+  transition: transform .3s;
+}
+.nav-link:hover {
+  color: var(--lime-vibrant);
+  text-decoration: none;
+}
+.nav-link:hover .fa-solid,
+.nav-link:hover .fas {
+  animation: menu-icon-pop .5s cubic-bezier(.4,1.6,.5,1.2) 1;
+}
+@keyframes menu-icon-pop {
+  0% { transform: scale(1) rotate(0deg);}
+  30% { transform: scale(1.16) rotate(-13deg);}
+  55% { transform: scale(1.13) rotate(6deg);}
+  80% { transform: scale(1.08) rotate(-2deg);}
+  100% { transform: scale(1) rotate(0deg);}
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 2px;
+  background: var(--lime-vibrant);
+  transition: width .3s;
+}
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+/* Dropdown redesigné façon carte de visite */
+.dropdown { position: relative; }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%; left: 0;
+  background: var(--navy-blue);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius);
+  padding: 24px 16px;
+  min-width: 680px;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .3s, transform .3s;
+  border-left: 4px solid var(--lime-vibrant);
+}
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+.dropdown-menu-column {
+  padding: 0 20px;
+  min-width: 150px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.dropdown-menu-column:last-child { border-right: none; }
+.dropdown-section {
+  font-weight: 700;
+  color: var(--lime-vibrant);
+  margin-bottom: 14px;
+  font-size: .92em;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 8px;
+  letter-spacing: .05em;
+}
+.dropdown-section::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0;
+  width: 24px; height: 2px;
+  background: var(--lime-vibrant);
+  border-radius: 1px;
+}
+.dropdown-menu-column a {
+  display: block;
+  padding: 8px 10px;
+  color: var(--white);
+  font-size: .97em;
+  text-decoration: none;
+  transition: all .2s;
+  padding-left: 10px;
+  border-radius: 6px;
+}
+.dropdown-menu-column a:hover {
+  color: var(--navy-blue);
+  padding-left: 12px;
+  background: var(--lime-vibrant);
+  transform: translateX(3px);
+}
+.dropdown-menu-column a .fas,
+.dropdown-menu-column a .fa-solid {
+  margin-right: 8px;
+  color: var(--medium-green);
+  transition: color .2s;
+}
+.dropdown-menu-column a:hover .fas,
+.dropdown-menu-column a:hover .fa-solid {
+  color: var(--navy-blue);
+}
+
+/* ------------------------------
+   4. ANIMATIONS & EFFETS VISUELS AMÉLIORÉS
+------------------------------- */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(22px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(126, 224, 0, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(126, 224, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(126, 224, 0, 0); }
+}
+.section, .service-card, .option-card, .about-block {
+  animation: fade-in-up .7s cubic-bezier(.3,1.4,.4,1.1) both;
+  animation-delay: .12s;
+}
+.featured-item, .hero-content, .cta-button {
+  animation: fade-in-up .8s cubic-bezier(.3,1.4,.4,1.1) both;
+  animation-delay: .2s;
+}
+.btn-primary {
+  animation: pulse-green 2s infinite;
+}
+.btn, .dropdown-menu, .dropdown-menu-column a {
+  transition: all .3s cubic-bezier(.25,1,.5,1);
+}
+.btn:active::after {
+  content: '';
+  position: absolute; left: 50%; top: 50%;
+  width: 0; height: 0;
+  background: rgba(255,255,255,0.25);
+  border-radius: 100%;
+  transform: translate(-50%,-50%);
+  animation: ripple .5s linear; z-index: 1;
+}
+@keyframes ripple { to { width: 200%; height: 200%; opacity: 0;} }
+
+/* Effet de parallax pour sections */
+.parallax-section {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* ------------------------------
+   5. PERSONNALISATION & DÉTAILS UI FAÇON CARTE DE VISITE
+------------------------------- */
+/* Helpers couleurs - palette cartes de visite */
+.text-lime     { color: var(--lime-vibrant) !important; }
+.text-navy     { color: var(--navy-blue) !important; }
+.text-deep     { color: var(--deep-blue) !important; }
+.text-light    { color: var(--light-green) !important; }
+.text-white    { color: var(--white) !important; }
+
+.bg-lime       { background: var(--lime-vibrant) !important; color: var(--navy-blue) !important; }
+.bg-navy       { background: var(--navy-blue) !important; color: var(--white) !important; }
+.bg-deep       { background: var(--deep-blue) !important; color: var(--white) !important; }
+.bg-light      { background: var(--light-green) !important; color: var(--navy-blue) !important; }
+.bg-ultra      { background: var(--ultra-light) !important; color: var(--navy-blue) !important; }
+
+/* Séparateurs stylisés */
+.separator {
+  height: 4px;
+  background: linear-gradient(90deg, var(--lime-vibrant), var(--light-green));
+  margin: 30px 0;
+  width: 80px;
+  border-radius: 2px;
+}
+.separator.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+.separator.full {
+  width: 100%;
+}
+
+/* Boutons style carte de visite */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .75rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.03rem;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all .22s;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.btn:focus {
+  box-shadow: 0 0 0 3px var(--accent-color);
+}
+.btn:hover, .btn:focus-visible {
+  transform: translateY(-3px) scale(1.04);
+}
+.btn-primary {
+  background: var(--lime-vibrant);
+  color: var(--navy-blue);
+}
+.btn-primary:hover {
+  background: var(--light-green);
+  color: var(--navy-blue);
+  box-shadow: var(--shadow-green);
+}
+.btn-navy {
+  background: var(--navy-blue);
+  color: var(--white);
+  border-left: 4px solid var(--lime-vibrant);
+}
+.btn-navy:hover {
+  background: var(--deep-blue);
+  color: var(--white);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--lime-vibrant);
+  border: 2px solid var(--lime-vibrant);
+}
+.btn-outline:hover {
+  background: var(--lime-vibrant);
+  color: var(--navy-blue);
+}
+
+/* Cards style carte de visite */
+.card-ramiz {
+  background: var(--navy-blue);
+  color: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform .3s, box-shadow .3s;
+  border-left: 4px solid var(--lime-vibrant);
+}
+.card-ramiz:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+.card-ramiz .card-header {
+  background: rgba(126, 224, 0, 0.1);
+  padding: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.card-ramiz .card-title {
+  color: var(--lime-vibrant);
+  font-size: 1.4rem;
+  margin: 0;
+}
+.card-ramiz .card-body {
+  padding: 20px;
+}
+.card-ramiz .card-footer {
+  background: rgba(0,0,0,0.1);
+  padding: 15px 20px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Section style carte de visite */
+.section {
+  padding: 80px 0 60px;
+  position: relative;
+}
+.section-navy {
+  background: var(--navy-blue);
+  color: var(--white);
+}
+.section-navy h2 {
+  color: var(--white);
+}
+.section-navy h2::after {
+  background: linear-gradient(90deg, var(--lime-vibrant), var(--light-green));
+}
+.section-lime {
+  background: linear-gradient(135deg, var(--lime-vibrant), var(--light-green));
+  color: var(--navy-blue);
+}
+.section-lime h2 {
+  color: var(--navy-blue);
+}
+.section-ultra {
+  background: var(--ultra-light);
+  color: var(--navy-blue);
+}
+
+/* Badge style carte de visite */
+.badge-ramiz {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 30px;
+  background: var(--lime-vibrant);
+  color: var(--navy-blue);
+  margin-right: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Liste stylisée */
+.list-ramiz {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+.list-ramiz li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+}
+.list-ramiz li:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 16px;
+  height: 16px;
+  background: var(--lime-vibrant);
+  border-radius: 50%;
+}
+.list-ramiz.check li:before {
+  content: '✓';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy-blue);
+  font-size: 10px;
+  font-weight: bold;
+}
+
+/* ------------------------------
+   6. RESPONSIVE AMÉLIORÉ
+------------------------------- */
+@media (max-width: 1200px) {
+  .header-content, .container { max-width: 95%; padding: 0 15px; }
+  .nav { gap: 24px; }
+  .dropdown-menu { min-width: 540px; }
+}
+@media (max-width: 992px) {
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.8rem; }
+  .nav { gap: 16px; }
+  .dropdown-menu { min-width: 100%; }
+}
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 12px;
+  }
+  .header-content .logo-container {
+    flex: 0 0 auto;
+  }
+  .header-content .mobile-menu-toggle {
+    flex: 0 0 auto;
+    display: block;
+  }
+  .nav {
+    flex-basis: 100%;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s;
+    padding: 0;
+  }
+  .nav.show {
+    max-height: 500px;
+    padding: 10px 0;
+  }
+  .dropdown { position: static; }
+  .dropdown-menu {
+    width: 100%;
+    left: 0; right: 0;
+    top: auto;
+    flex-direction: column;
+    padding: 15px 10px;
+  }
+  .dropdown-menu-column {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 10px;
+  }
+  .dropdown-menu-column:last-child {
+    border-bottom: none;
+  }
+}
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.4rem; }
+  .btn { padding: .6rem 1.2rem; font-size: .95rem; }
+  .header-content { padding: 8px; }
+  .logo-image { height: 34px; }
+}
+
+/* ------------------------------
+   7. MENU BURGER MOBILE (Optionnel)
+------------------------------- */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 100;
+}
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block;
+  }
+  .mobile-menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--lime-vibrant);
+    margin: 5px 0;
+    border-radius: 3px;
+    transition: all .3s;
+  }
+  .mobile-menu-toggle.active .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+  .mobile-menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .mobile-menu-toggle.active .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+}
+
+/* ------------------------------
+   8. EXPLICATION DES AMÉLIORATIONS (DOUBLE PALETTE)
+------------------------------- */
+/**
+1. **PALETTE FUSION DOUBLE IMPACT :**  
+   - Intégration des 2 palettes avec prédominance du vert vibrant du logo (#7ee000) et du bleu marine (#354c5e)
+   - Utilisation des verts de la palette2 (#86f67d, #77d96c) pour les effets et animations
+   - Application du contraste fort bleu marine/vert inspiré des cartes de visite pour une identité visuelle puissante
+
+2. **DESIGN FAÇON CARTE DE VISITE :**  
+   - Header bleu marine avec texte blanc et vert vibrant (comme le verso de la carte)
+   - Dropdown avec fond bleu marine, texte blanc, et accent vert (reproduction de l'identité des cartes)
+   - Boutons stylisés façon carte de visite avec bords verts et animation pulse
+
+3. **ANIMATIONS RENFORCÉES :**  
+   - Pulse subtil sur les boutons importants
+   - Animations de transition plus fluides et plus élaborées (cubic-bezier)
+   - Effets au survol plus visibles et mémorables
+
+4. **COMPOSANTS EXCLUSIFS :**  
+   - Cards façon carte de visite
+   - Badges, listes, et séparateurs personnalisés
+   - Menu burger mobile avec animation
+
+5. **LISIBILITÉ OPTIMISÉE :**
+   - Contraste renforcé pour une meilleure lecture
+   - Typographie claire avec hiérarchie évidente
+   - Espacement optimisé pour les mobiles
+
+=> Cette version associe les forces des deux palettes avec l'identité visuelle des cartes de visite pour un résultat professionnel, mémorable et distinctif.
+*/
